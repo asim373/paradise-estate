@@ -1,0 +1,81 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Property {
+  id                 String            @id @default(cuid())
+  slug               String            @unique
+  cityId             String
+  name               String
+  city               String
+  state              String
+  address            String
+  price              Decimal           @db.Decimal(14, 2)
+  propertyType       String
+  description        String
+  editorialHeading   String
+  editorialNote      String
+  editorialQuote     String
+  coverImage         String
+  coverAlt           String
+  bedrooms           Int
+  fullBathrooms      Int
+  halfBathrooms      Int               @default(0)
+  interiorSquareFeet Int
+  specifications     Json?
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
+  images             PropertyImage[]
+  inquiries          PropertyInquiry[]
+  viewingRequests    ViewingRequest[]
+
+  @@index([cityId])
+}
+
+model PropertyImage {
+  id         String   @id @default(cuid())
+  propertyId String
+  path       String
+  alt        String
+  sortOrder  Int
+  createdAt  DateTime @default(now())
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  @@unique([propertyId, sortOrder])
+  @@index([propertyId])
+}
+
+model PropertyInquiry {
+  id         String   @id @default(cuid())
+  propertyId String?
+  name       String
+  email      String
+  phone      String?
+  message        String?
+  idempotencyKey String? @unique
+  requestHash    String?
+  createdAt      DateTime @default(now())
+  property   Property? @relation(fields: [propertyId], references: [id], onDelete: SetNull)
+
+  @@index([propertyId])
+}
+
+model ViewingRequest {
+  id            String   @id @default(cuid())
+  propertyId    String?
+  name          String
+  email         String
+  phone         String?
+  requestedDate DateTime?
+  notes          String?
+  idempotencyKey String? @unique
+  requestHash    String?
+  createdAt      DateTime @default(now())
+  property      Property? @relation(fields: [propertyId], references: [id], onDelete: SetNull)
+
+  @@index([propertyId])
+}
