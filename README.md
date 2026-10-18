@@ -4,6 +4,10 @@ An engineering-focused, full-stack luxury real estate portfolio website built wi
 
 This is a software-engineering portfolio project, not a commercial real estate service or SaaS product. Property listings, addresses, photography, and editorial content are fictional demonstration material.
 
+<p align="center">
+  <img src="docs/screenshots/01-homepage-hero.png" alt="Paradise Estate homepage hero and navigation" width="100%" />
+</p>
+
 ## Product concept
 
 Paradise Estate explores how a premium real estate brand can pair editorial presentation with practical discovery tools. Visitors can browse a curated collection, narrow results by location and property characteristics, inspect detailed specifications, and begin an inquiry from a property-specific viewing journey.
@@ -152,21 +156,31 @@ For reviewed deployment migrations, use `npx prisma migrate deploy` only after v
 
 ## Screenshots
 
-<p align="center">
-  <img src="docs/screenshots/home-hero.png" alt="Paradise Estate home page hero and primary navigation" width="100%" />
-</p>
+### Featured application gallery
 
 | Home and discovery | Property experience |
 | --- | --- |
-| ![Featured residences on the Paradise Estate home page](docs/screenshots/home-collection.png) | ![Property listing filters and cards](docs/screenshots/properties-listing.png) |
-| ![New York property detail gallery](docs/screenshots/new-york-property-detail.png) | ![Miami property detail gallery](docs/screenshots/miami-property-detail.png) |
+| ![Homepage featured properties](docs/screenshots/02-homepage-featured-properties.png) | ![Properties listing and filters](docs/screenshots/03-properties-listing.png) |
+| ![New York property detail](docs/screenshots/04-new-york-property-detail.png) | ![Property specifications](docs/screenshots/05-property-specifications.png) |
 
 | Editorial pages | Inquiry flow |
 | --- | --- |
-| ![About page introduction and statistics](docs/screenshots/about-introduction.png) | ![Contact inquiry interface](docs/screenshots/contact-inquiry.png) |
-| ![About page values card grid](docs/screenshots/about-values-grid.png) | ![Communities page](docs/screenshots/communities.png) |
+| ![About Us values cards](docs/screenshots/10-about-values-cards.png) | ![Communities introduction](docs/screenshots/08-communities-introduction.png) |
+| ![Contact inquiry form](docs/screenshots/14-contact-inquiry-form.png) |  |
 
-All screenshots are captured from the local application using its fictional demonstration data and imagery.
+### Additional views
+
+View the remaining screenshots at their original resolution:
+
+- [New York city hero](docs/screenshots/06-new-york-city-hero.png)
+- [New York city collection](docs/screenshots/07-new-york-city-collection.png)
+- [About Us introduction](docs/screenshots/09-about-introduction.png)
+- [About Us philosophy](docs/screenshots/11-about-philosophy.png)
+- [Homepage perspective](docs/screenshots/12-homepage-perspective.png)
+- [Contact introduction](docs/screenshots/13-contact-introduction.png)
+- [Website footer](docs/screenshots/15-website-footer.png)
+
+All screenshots are user-captured views of the local application using its fictional demonstration data and imagery.
 
 ## Demo video
 
