@@ -2,6 +2,8 @@
 
 An engineering-focused, full-stack luxury real estate portfolio website built with Next.js, React, TypeScript, PostgreSQL, and Prisma. It demonstrates a polished public-facing experience for discovering curated residences across major American cities.
 
+[![CI](https://github.com/asim373/paradise-estate/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/asim373/paradise-estate/actions/workflows/ci.yml)
+
 This is a software-engineering portfolio project, not a commercial real estate service or SaaS product. Property listings, addresses, photography, and editorial content are fictional demonstration material.
 
 <p align="center">
@@ -69,6 +71,14 @@ Next.js App Router
 ```
 
 The frontend uses typed property data through server-side Prisma queries and API routes. Public write endpoints validate input, use idempotency keys to protect retries, and avoid returning raw database errors.
+
+## Engineering documentation
+
+- [System Architecture](docs/architecture/system-architecture.md) — App Router, UI, API, asset, Prisma, and PostgreSQL boundaries.
+- [Database Design](docs/architecture/database-design.md) — Prisma-derived ERD, relationships, constraints, and data responsibilities.
+- [Technical Case Study](docs/case-study.md) — implementation goals, engineering decisions, and scope.
+- [Testing & Quality Assurance](docs/testing-and-qa.md) — browser, accessibility, validation, integration, and catalog-integrity coverage.
+- [Engineering Decisions](docs/engineering-decisions.md) — verified requirements, trade-offs, and evidence.
 
 ## Database and API capabilities
 
@@ -182,10 +192,6 @@ View the remaining screenshots at their original resolution:
 
 All screenshots are user-captured views of the local application using its fictional demonstration data and imagery.
 
-## Demo video
-
-Placeholder: add a short walkthrough link or embedded video after recording it. No demo video is included in this repository yet.
-
 ## Technical highlights
 
 - Typed boundaries across React components, API handlers, Prisma models, and property serialization.
@@ -201,3 +207,9 @@ Placeholder: add a short walkthrough link or embedded video after recording it. 
 - A final public domain is intentionally not configured; sitemap publication and canonical URLs should be finalized only when a deployment domain is approved.
 - Distributed production rate limiting and trusted client-IP handling remain hosting-dependent work and must be completed before any public production launch.
 - The repository does not include a demo video, credentials, or backup archives.
+
+## Future improvements
+
+- Configure trusted platform-derived client identity and distributed rate limiting after selecting a hosting platform.
+- Finalize canonical URLs, sitemap publication, and social metadata after an approved public domain exists.
+- Add a separate administrative workflow only if future requirements call for managing portfolio content or submissions.

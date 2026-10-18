@@ -1,0 +1,79 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate application
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_DB: paradise_estate_test
+          POSTGRES_USER: paradise_ci
+          POSTGRES_PASSWORD: paradise_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U paradise_ci -d paradise_estate_ci"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      DATABASE_URL: postgresql://paradise_ci:paradise_ci@127.0.0.1:5432/paradise_estate_test
+      DIRECT_URL: postgresql://paradise_ci:paradise_ci@127.0.0.1:5432/paradise_estate_test
+      TEST_DATABASE_URL: postgresql://paradise_ci:paradise_ci@127.0.0.1:5432/paradise_estate_test
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate Prisma Client
+        run: npm run prisma:generate
+
+      - name: Apply database migrations
+        run: npx prisma migrate deploy
+
+      - name: Seed approved catalog fixtures
+        run: npm run db:seed
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Type check
+        run: npm run typecheck
+
+      - name: Validate Prisma schema
+        run: npm run prisma:validate
+
+      - name: Verify property gallery assignments
+        run: npm run verify:images
+
+      - name: Build production application
+        run: npm run build
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run browser tests
+        run: npm run test:e2e
+
+      - name: Run isolated API integration tests
+        run: npm run test:api-integration
