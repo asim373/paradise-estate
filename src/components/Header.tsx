@@ -51,7 +51,12 @@ export function Header() {
   return (
     <header className={`absolute inset-x-0 top-0 z-30 border-b ${onHero ? "header-on-hero border-white/20 text-white" : "header-on-light border-charcoal/10 text-charcoal"}`}>
       <div className="page-shell flex h-24 items-center justify-between">
-        <Link href="/" className="font-serif text-2xl tracking-[0.08em]" onClick={closeMenus}>Paradise Estate</Link>
+        <Link href="/" className="flex items-center gap-2 font-serif text-2xl tracking-[0.08em]" onClick={closeMenus}>
+          <svg aria-hidden="true" className="h-5 w-5 shrink-0 text-beige" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.7">
+            <path strokeLinecap="round" strokeLinejoin="round" d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V10Z" />
+          </svg>
+          <span>Paradise Estate</span>
+        </Link>
 
         <nav className="hidden items-center gap-8 text-[11px] font-semibold uppercase tracking-[0.18em] xl:flex" aria-label="Primary navigation">
           <Link className="nav-link" href="/">Home</Link>

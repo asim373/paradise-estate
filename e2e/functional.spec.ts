@@ -1,14 +1,14 @@
 import { expect, test } from "@playwright/test";
 
 const properties = [
-  ["new-york", "the-astor-residence", "The Astor Residence"],
-  ["new-york", "park-avenue-penthouse", "Park Avenue Penthouse"],
-  ["miami", "palmetto-house", "Palmetto House"],
-  ["miami", "coral-gables-courtyard", "Coral Gables Courtyard"],
-  ["los-angeles", "canyon-view-estate", "Canyon View Estate"],
-  ["los-angeles", "silver-lake-modern", "Silver Lake Modern"],
-  ["chicago", "lakeview-greystone", "Lakeview Greystone"],
-  ["chicago", "the-magnificent-mile-residence", "The Magnificent Mile Residence"],
+  ["new-york", "the-astor-residence", "The Astor Residence", 5],
+  ["new-york", "park-avenue-penthouse", "Park Avenue Penthouse", 4],
+  ["miami", "palmetto-house", "Palmetto House", 5],
+  ["miami", "coral-gables-courtyard", "Coral Gables Courtyard", 4],
+  ["los-angeles", "canyon-view-estate", "Canyon View Estate", 6],
+  ["los-angeles", "silver-lake-modern", "Silver Lake Modern", 3],
+  ["chicago", "lakeview-greystone", "Lakeview Greystone", 5],
+  ["chicago", "the-magnificent-mile-residence", "The Magnificent Mile Residence", 3],
 ] as const;
 
 const topLevelPages = [
@@ -45,11 +45,13 @@ test("all city pages isolate their two listings", async ({ page }) => {
 test("all eight details render their own data and navigate the complete gallery", async ({ page }) => {
   const pageErrors: string[] = [];
   page.on("pageerror", (error) => pageErrors.push(error.message));
-  for (const [city, slug, name] of properties) {
+  for (const [city, slug, name, bedrooms] of properties) {
     const response = await page.goto(`/properties/${city}/${slug}`);
     expect(response?.status(), name).toBe(200);
     await expect(page.getByRole("heading", { level: 1, name })).toBeVisible();
-    await expect(page.getByText(/\d+ beds/)).toBeVisible();
+    const bedroomSummary = page.getByText("Bedrooms", { exact: true }).first().locator("..");
+    await expect(bedroomSummary).toContainText(String(bedrooms));
+    await expect(bedroomSummary).toContainText("Bedrooms");
     const gallery = page.getByLabel(`${name} image gallery`);
     const image = gallery.locator("img");
     await expect(image).toHaveCount(1);

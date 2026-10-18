@@ -152,14 +152,21 @@ For reviewed deployment migrations, use `npx prisma migrate deploy` only after v
 
 ## Screenshots
 
-Screenshot placeholders — add images later without changing the application:
+<p align="center">
+  <img src="docs/screenshots/home-hero.png" alt="Paradise Estate home page hero and primary navigation" width="100%" />
+</p>
 
-| View | Planned file |
+| Home and discovery | Property experience |
 | --- | --- |
-| Home page | `docs/screenshots/home.png` |
-| Properties and filters | `docs/screenshots/properties.png` |
-| Property detail carousel | `docs/screenshots/property-detail.png` |
-| Mobile navigation | `docs/screenshots/mobile-navigation.png` |
+| ![Featured residences on the Paradise Estate home page](docs/screenshots/home-collection.png) | ![Property listing filters and cards](docs/screenshots/properties-listing.png) |
+| ![New York property detail gallery](docs/screenshots/new-york-property-detail.png) | ![Miami property detail gallery](docs/screenshots/miami-property-detail.png) |
+
+| Editorial pages | Inquiry flow |
+| --- | --- |
+| ![About page introduction and statistics](docs/screenshots/about-introduction.png) | ![Contact inquiry interface](docs/screenshots/contact-inquiry.png) |
+| ![About page values card grid](docs/screenshots/about-values-grid.png) | ![Communities page](docs/screenshots/communities.png) |
+
+All screenshots are captured from the local application using its fictional demonstration data and imagery.
 
 ## Demo video
 
@@ -179,4 +186,4 @@ Placeholder: add a short walkthrough link or embedded video after recording it. 
 - Listings and imagery are fictional and must not be treated as real inventory or availability information.
 - A final public domain is intentionally not configured; sitemap publication and canonical URLs should be finalized only when a deployment domain is approved.
 - Distributed production rate limiting and trusted client-IP handling remain hosting-dependent work and must be completed before any public production launch.
-- The repository does not include screenshots, a demo video, credentials, backup archives, or a remote GitHub repository.
+- The repository does not include a demo video, credentials, or backup archives.
