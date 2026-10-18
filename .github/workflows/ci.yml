@@ -76,6 +76,13 @@ jobs:
       - name: Install Playwright Chromium
         run: npx playwright install --with-deps chromium
 
+      - name: Provide npm.cmd compatibility for Playwright
+        run: |
+          mkdir -p "$RUNNER_TEMP/ci-bin"
+          printf '#!/usr/bin/env sh\nexec npm "$@"\n' > "$RUNNER_TEMP/ci-bin/npm.cmd"
+          chmod +x "$RUNNER_TEMP/ci-bin/npm.cmd"
+          echo "$RUNNER_TEMP/ci-bin" >> "$GITHUB_PATH"
+
       - name: Run browser tests
         run: npm run test:e2e -- --workers=1
 
