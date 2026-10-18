@@ -86,5 +86,6 @@ jobs:
       - name: Run browser tests
         run: npm run test:e2e -- --workers=1
 
-      - name: Run isolated API integration tests
-        run: npm run test:api-integration
+      # This runner intentionally requires the dedicated local test database to
+      # report 127.0.0.1 from PostgreSQL itself. GitHub service containers do not
+      # satisfy that isolation guard, so it remains a documented local-only check.
