@@ -51,6 +51,10 @@ jobs:
       - name: Apply database migrations
         run: npx prisma migrate deploy
 
+      - name: Create ephemeral CI environment file
+        run: |
+          printf 'DATABASE_URL=%s\nDIRECT_URL=%s\n' "$DATABASE_URL" "$DIRECT_URL" > .env.local
+
       - name: Seed approved catalog fixtures
         run: npm run db:seed
 
